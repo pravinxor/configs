@@ -5,10 +5,9 @@
     tree
   ];
 
-  programs.fzf = {
-    enable = true;
-    enableFishIntegration = true;
-  };
+  home.shell.enableFishIntegration = true;
+  programs.fzf.enable = true;
+
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
@@ -18,7 +17,7 @@
       alias cp='cp -v'
       alias rm='rm -v'
       alias chmod='chmod -v'
-      alias nshell="nix-shell --command fish -p"
+      alias nshell="NIXPKGS_ALLOW_UNFREE=1 nix-shell --command fish -p"
     '';
   };
 }

@@ -77,14 +77,11 @@ in
         osd-bar = "no";
         border = "no";
 
-        vo = "gpu-next";
         hwdec = "auto";
         gpu-api = "vulkan";
-        hls-bitrate = "max";
-        cache = "yes";
+        vd-lavc-show-all = "yes";
         cache-pause = false;
         keep-open = "yes";
-        demuxer-max-bytes = "32GiB";
         ad-lavc-threads = 0;
       };
       bindings = {
@@ -95,22 +92,27 @@ in
         "Alt+j" = "add video-pan-y 0.05";
         "Alt+k" = "add video-pan-y -0.05";
 
+        "Alt+LEFT" = "no-osd cycle-values video-rotate \"270\" \"180\" \"90\" \"0\"";
+        "Alt+RIGHT" = "no-osd cycle-values video-rotate \"90\" \"180\" \"270\" \"0\"";
+        
         "Ctrl+f" = "script-binding subtitle_lines/list_subtitles";
         "Ctrl+F" = "script-binding subtitle_lines/list_secondary_subtitles";
       };
       profiles = {
         fast = {
+          vo = "dmabuf-wayland";
           vulkan-device = "AMD Radeon 780M (RADV PHOENIX)";
           deband = false;
         };
         slow = {
+          vo = "gpu-next";
           vulkan-device = "NVIDIA GeForce RTX 4060 Laptop GPU";
+          deinterlace = "auto";
           scale = "ewa_lanczos4sharpest";
           dscale = "ewa_lanczos4sharpest";
-          tscale = "oversample";
           video-sync = "display-resample";
           interpolation = true;
-          # dither = "error-diffusion";
+          dither = "error-diffusion";
           # error-diffusion="floyd-steinberg";
           temporal-dither = true;
           deband = true;

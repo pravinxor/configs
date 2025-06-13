@@ -4,48 +4,30 @@
   networking = {
     useNetworkd = true;
     networkmanager.enable = false;
-    wireless.iwd = {
-      enable = true;
-      # settings = {
-      #   Rank = {
-      #     BandModifier5Ghz = 2.0;
-      #   };
-      # };
+    wireless = {
+      fallbackToWPA2 = false;
+      iwd = { enable = true; };
     };
-    hostName = "greenfn";
+    hostName = "ampere";
 
-    wireguard.enable = true;
+    # wireguard.enable = true;
   };
 
   systemd.network = {
     enable = true;
+    wait-online.enable = false;
 
     networks = {
       "40-wired" = {
-        matchConfig = {
-          Type = "ether";
-        };
-        networkConfig = {
-          DHCP = "yes";
-        };
-        linkConfig = {
-          RequiredForOnline = "routable";
-        };
+        matchConfig = { Type = "ether"; };
+        networkConfig = { DHCP = "yes"; };
       };
       "50-wireless" = {
-        matchConfig = {
-          Type = "wlan";
-        };
-        networkConfig = {
-          DHCP = "yes";
-        };
-        linkConfig = {
-          RequiredForOnline = "routable";
-        };
+        matchConfig = { Type = "wlan"; };
+        networkConfig = { DHCP = "yes"; };
       };
     };
   };
-
 
   services.resolved = {
     enable = true;

@@ -1,4 +1,5 @@
-@define-color iconbackground-color #3e4153;
+@define-color iconbackground-color #3a4248;
+
 
 * {
   border: none;
@@ -14,6 +15,18 @@ window#waybar {
 
 window#waybar.hidden {
   opacity: 0.2;
+}
+
+tooltip {
+  background-color: #2e383c;
+  color: #d3c6aa;
+  border: 1px solid #3a4248;
+  padding: 8px 12px;
+  font-size: small;
+}
+
+tooltip label {
+  color: #d3c6aa;
 }
 
 #workspaces,
@@ -34,8 +47,8 @@ window#waybar.hidden {
 #tray {
   background-color: #282A36;
   padding: 0 12px;
+  border-radius: 0;
   margin: 4px 4px 4px 4px;
-  border-radius: 90px;
   background-clip: padding-box;
 }
 
@@ -46,7 +59,7 @@ window#waybar.hidden {
 }
 
 #workspaces button:hover {
-  background-color: rgba(0, 0, 0, 0.2)
+  background-color: rgba(68, 71, 90, 0.5)
 }
 
 #workspaces button.focused {

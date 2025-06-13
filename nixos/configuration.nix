@@ -5,20 +5,21 @@
 { pkgs, ... }:
 
 {
-  imports =
-    [
-      ./audio.nix
-      ./games.nix
-      ./hardware-configuration.nix
-      ./locale.nix
-      ./memory.nix
-      ./networking.nix
-      ./power.nix
-      ./printing.nix
-      ./security.nix
-      ./user.nix
-      ./video.nix
-    ];
+  imports = [
+    ./audio.nix
+    ./games.nix
+    ./hardware-configuration.nix
+    ./locale.nix
+    ./memory.nix
+    ./networking.nix
+    ./power.nix
+    ./printing.nix
+    ./security.nix
+    ./user.nix
+    ./video.nix
+  ];
+
+  services.fwupd.enable = true;
 
   boot.loader = {
     efi.canTouchEfiVariables = true;
@@ -30,26 +31,41 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  hardware.keyboard.qmk.enable = true;
+  hardware = {
+    enableAllFirmware = true;
+    keyboard.qmk.enable = true;
+    flipperzero.enable = true;
+  };
 
   nixpkgs = {
     config = {
       allowUnfree = true;
-      config.cudaSupport = true;
+      cudaSupport = true;
     };
-
-    hostPlatform.system = builtins.currentSystem;
   };
 
   programs.nix-ld.enable = true;
 
   nix = {
+    daemonIOSchedClass = "idle";
     daemonCPUSchedPolicy = "idle";
-    optimise.automatic = true;
+
+    optimise = {
+      automatic = true;
+      persistent = true;
+    };
+    gc = {
+      automatic = true;
+      persistent = true;
+    };
+
     settings = {
       sandbox = "relaxed";
       auto-optimise-store = true;
       experimental-features = [ "nix-command" "flakes" ];
+
+      keep-outputs = true;
+      keep-derivations = true;
     };
   };
 

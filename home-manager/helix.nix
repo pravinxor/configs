@@ -9,14 +9,16 @@
       extraPackages = with pkgs; [
         bash-language-server
         nixd
+        nixfmt
         clang-tools
         superhtml
         vscode-langservers-extracted
         typescript-language-server
         rust-analyzer
-        pyright
         ruff
         svelte-language-server
+        ty
+        jdt-language-server
         gopls
         tinymist
         typst-fmt
@@ -25,9 +27,8 @@
         yaml-language-server
         zls
       ];
-      
+
       settings = {
-        theme = "dracula";
         editor = {
           line-number = "relative";
           color-modes = true;
@@ -37,37 +38,28 @@
             normal = "block";
             select = "underline";
           };
+
           indent-guides.render = true;
           soft-wrap.enable = true;
-          lsp = {
-            display-messages = true;
-            display-inlay-hints = true;
-          };
+          completion-replace = true;
+          lsp = { display-progress-messages = true; };
         };
       };
-      themes = {
-        dracula = {
-          inherits = "dracula";
-          "ui.background" = {};
-        };
-      };
+
       languages = {
         language = [
-        {
-          name = "nix";
-          language-servers = [ "nixd" ];
-        }
-        {
-          name = "python";
-          language-servers = [ "pyright" "ruff" ];
-        }];
+          {
+            name = "python";
+            language-servers = [ "ruff" "ty" ];
+          }
+          {
+            name = "nix";
+            formatter = { command = "${pkgs.nixfmt}/bin/nixfmt"; };
+          }
+        ];
         language-server = {
-          nixd = {
-            command = "${pkgs.nixd}/bin/nixd";
-            args = [];
-          };
-          ruff = {
-            command = "${pkgs.ruff}/bin/ruff";
+          ty = {
+            command = "${pkgs.ty}/bin/ty";
             args = [ "server" ];
           };
         };

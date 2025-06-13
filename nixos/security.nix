@@ -14,10 +14,18 @@
       enableFscrypt = true;
     };
   };
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
+  programs = {
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+    wireshark = {
+      enable = false;
+      usbmon.enable = true;
+      package = pkgs.wireshark-qt;
+    };
   };
+  # users.users.pravin.extraGroups = [ "wireshark" ];
   services = {
     dbus.packages = [ pkgs.gcr ];
     cloudflare-warp.enable = false;

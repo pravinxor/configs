@@ -21,7 +21,7 @@
     git = {
       enable = true;
       userName = "Pravin Ramana";
-      userEmail = "pravinramana25@protonmail.ch";
+      userEmail = "pravin@pravinxor.dev";
       signing = { 
         signByDefault = true;
         key = null;
@@ -32,7 +32,7 @@
   services = {
     gpg-agent = {
       enable = true;
-      pinentryPackage = pkgs.pinentry-tty;
+      pinentry.package = pkgs.pinentry-tty;
     };
     gnome-keyring.enable = true;
   };

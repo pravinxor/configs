@@ -4,12 +4,15 @@
   programs = {
     chromium = {
       enable = true;
+      dictionaries = [ pkgs.hunspellDictsChromium.en_US ];
+      commandLineArgs = [ "--native-gpu-buffers" ];
+
       package = pkgs.brave;
     };
 
     thunderbird = {
       enable = true;
-      profiles = {};
+      profiles = { };
     };
 
     zathura = {
@@ -18,9 +21,7 @@
         "sandbox" = "strict";
         "selection-clipboard" = "clipboard";
       };
-      mappings = {
-        "<C-i>" = "recolor";
-      };
+      mappings = { "<C-i>" = "recolor"; };
     };
   };
 }
