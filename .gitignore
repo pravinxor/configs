@@ -1,2 +1,1 @@
-nixos/hardware-configuration.nix
-home-manager/personal.nix
+home-manager/flake.lock
