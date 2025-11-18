@@ -1,8 +1,0 @@
-#!/bin/sh
-emerge --sync
-set_prev=$(cat /sys/firmware/acpi/platform_profile)
-echo performance > /sys/firmware/acpi/platform_profile
-emerge --update --newuse --deep @world
-smart-live-rebuild
-echo $set_prev > /sys/firmware/acpi/platform_profile
-emerge --depclean

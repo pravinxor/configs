@@ -1,5 +1,0 @@
-#!/bin/sh
-rc-service connman stop
-rc-service iwd stop
-rc-service connman start
-rc-service iwd start
