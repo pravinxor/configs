@@ -69,6 +69,8 @@
 					diagnostics.enable = true;
 				};
 			};
+			web-devicons.enable = true;
+			telescope.enable = true;
 			gitblame = {
 				enable = true;
 				settings = {
@@ -77,7 +79,6 @@
 					schedule_event = "CursorMoved";
 				};
 			};
-			web-devicons.enable = true;
 		};
 	};
 }
