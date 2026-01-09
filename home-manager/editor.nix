@@ -26,6 +26,7 @@
 		};
 
 		opts = {
+			clipboard = "unnamedplus";
 			background = "light";
 			number = true; 
 			relativenumber = true;
@@ -46,7 +47,7 @@
 				enable = true;
 				grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
 					bash javascript python typescript
-					c cpp rust wgsl zig
+					c cpp wgsl zig
 					html json svelte toml yaml nix
 				];
 				settings = {
@@ -66,6 +67,14 @@
 						diagnostics = false;
 					};
 					diagnostics.enable = true;
+				};
+			};
+			gitblame = {
+				enable = true;
+				settings = {
+					enable = true;
+					clear_event = "CursorMovedI";
+					schedule_event = "CursorMoved";
 				};
 			};
 			web-devicons.enable = true;
