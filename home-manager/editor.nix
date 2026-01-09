@@ -9,20 +9,19 @@
 
 		clipboard.providers.pbcopy.enable = true;
 		colorschemes.one.enable = true;
-		
+
 		keymaps = [{
 			action = ":NvimTreeToggle<cr>";
 			key = "<leader>e";
 		}];
 
-		performance = {
-			byteCompileLua = {
+		dependencies.ripgrep.enable = true;
+
+		performance.byteCompileLua = {
 			enable = true;
 			initLua = true;
 			nvimRuntime = true;
 			plugins = true;
-			};
-			combinePlugins.enable = true;
 		};
 
 		opts = {
@@ -70,13 +69,14 @@
 				};
 			};
 			web-devicons.enable = true;
-			telescope.enable = true;
-			gitblame = {
+			telescope = {
 				enable = true;
-				settings = {
-					enable = true;
-					clear_event = "CursorMovedI";
-					schedule_event = "CursorMoved";
+				keymaps = {
+					"<C-p>" = "git_files";
+					"<leader>ff" = "find_files";
+					"<leader>fg" = "live_grep";
+					"<leader>fb" = "buffers";
+					"<leader>fh" = "help_tags";
 				};
 			};
 		};
