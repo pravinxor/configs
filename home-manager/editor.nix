@@ -4,18 +4,14 @@
 
 	programs.nixvim = {
 		enable = true; defaultEditor = true;
-		viAlias = true; vimAlias = true;
+		viAlias = true; vimDiffAlias = true; vimAlias = true;
+		nixpkgs.useGlobalPackages = true;
 		enableMan = false;
 
 		clipboard.providers.pbcopy.enable = true;
-		colorschemes.one.enable = true;
-
-		keymaps = [
-			{
-				action = ":NvimTreeToggle<cr>";
-				key = "<leader>e";
-			}
-		];
+		colorschemes.melange = {
+			enable = true;
+		};
 
 		dependencies.ripgrep.enable = true;
 
@@ -35,8 +31,10 @@
 			tabstop = 4;
 			expandtab = false;
 
-			smartindent = true;
-			autoindent = true;
+			foldmethod = "expr"; foldexpr = "v:lua.vim.treesitter.foldexpr()"; foldlevel = 99;
+
+			smartindent = true; autoindent = true;
+			ignorecase = true; smartcase = true;
 		};
 
 		lsp.servers = {
@@ -69,11 +67,8 @@
 					};
 				};
 			};
-			nvim-tree = {
-				enable = true;
-				settings.diagnostics.enable = true;
-			};
-			web-devicons.enable = true;
+			treesitter-context.enable = true;
+			web-devicons.enable = false;
 			telescope = {
 				enable = true;
 				keymaps = {
