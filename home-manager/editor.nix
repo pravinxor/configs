@@ -25,6 +25,11 @@
 			combinePlugins.enable = true;
 		};
 
+		keymaps = [{
+			key = "<leader>f";
+			action = "<cmd>FZF<CR>";
+		}];
+
 		opts = {
 			clipboard = "unnamedplus";
 			background = "light";
@@ -53,16 +58,6 @@
 		plugins = {
 			lspconfig.enable = true;
 			direnv.enable = true;
-			web-devicons.enable = false;
-			telescope = {
-				enable = true;
-				keymaps = {
-					"<leader>ff".action = "find_files";
-					"<leader>fg".action = "live_grep";
-					"<leader>fb".action = "buffers";
-					"<leader>fd".action = "diagnostics";
-				};
-			};
 			treesitter = {
 				enable = true;
 				grammarPackages = with pkgs.vimPlugins.nvim-treesitter-parsers; [
