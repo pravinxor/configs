@@ -14,14 +14,19 @@
 			shellAliases = {
 				ls = "ls --color=auto"; grep = "grep --color=auto"; diff = "diff --color=auto";
 				hm-switch = "nix flake update --flake ${config.xdg.configHome}/home-manager && home-manager switch";
+				vf = "vim $(fzf)";
 			};
-			sessionVariables = { COLORTERM = 1; };
+			sessionVariables = {
+				COLORTERM = 1;
+			};
+			profileExtra= ''
+   			if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+   			  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+   			fi
+			'';
 			initContent = ''
-				if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-				  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-				fi
+			  export PATH="/Users/pravin/.nix-profile/bin:$PATH"
 			'';
 		};
 	};
 }
-

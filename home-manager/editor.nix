@@ -4,38 +4,18 @@
 
 	programs.nixvim = {
 		enable = true; defaultEditor = true;
-		viAlias = true; vimDiffAlias = true; vimAlias = true;
+		viAlias = true; vimAlias = true;
 		nixpkgs.useGlobalPackages = true;
 		enableMan = false;
 		
 		colorschemes.melange.enable = true;
 		clipboard.providers.pbcopy.enable = true;
 
-		dependencies.ripgrep.enable = true;
-
-		performance = {
-			byteCompileLua = {
-				enable = true;
-				configs = true;
-				initLua = true;
-				luaLib = true;
-				nvimRuntime = true;
-				plugins = true;
-			};
-			combinePlugins.enable = true;
-		};
-
-		keymaps = [{
-			key = "<leader>f";
-			action = "<cmd>FZF<CR>";
-		}];
-
 		opts = {
 			clipboard = "unnamedplus";
 			background = "light";
 			shiftwidth = 4;
 			tabstop = 4;
-			expandtab = false;
 
 			foldmethod = "expr"; foldexpr = "v:lua.vim.lsp.foldexpr()"; foldlevel = 99;
 

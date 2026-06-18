@@ -5,23 +5,21 @@
 		pkgs.nerd-fonts.symbols-only
 		ffmpeg
 
-		nodejs uv
-
-		# for claude-code 
-		rustc rust-analyzer
-		pyright 
-		clang-tools
-		vtsls
+		# dev
+		scc
 	];
 
 	targets.darwin.linkApps.enable = false;
 	targets.darwin.copyApps.enable = true;
 
 	programs = {
-		claude-code.enable = true;
+		# dev
+		ripgrep.enable = true;
+		broot.enable = true;
+		fd.enable = true;
+
 		yt-dlp.enable = true;
 		rtorrent.enable = true;
-		aria2.enable = true;
 		mpv = {
 			enable = true;
 			config = {
@@ -36,6 +34,7 @@
 			enable = true;
 			settings = {
 				user = { name = "Pravin Ramana"; email = "pravin@pravinxor.dev"; };
+				init.defaultBranch = "master";
 			};
 		};
 		ssh = {
@@ -48,6 +47,14 @@
 		};
 	};
 	xdg.configFile."nixpkgs/config.nix".text = "{ allowUnfree = true; }";
+
+	home.file."Library/Preferences/clangd/config.yaml".source =
+		(pkgs.formats.yaml { }).generate "clangd-config.yaml" {
+			CompileFlags.Add = [
+				"-isysroot"
+				"${pkgs.apple-sdk}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
+			];
+		};
 
 	home = {
 		shell.enableZshIntegration = true;

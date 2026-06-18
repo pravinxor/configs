@@ -3,8 +3,8 @@
 
 	inputs = {
 		nixpkgs.url = "git+https://github.com/NixOS/nixpkgs?ref=nixos-unstable&shallow=1";
-    	home-manager = { url = "git+https://github.com/nix-community/home-manager?shallow=1"; inputs.nixpkgs.follows = "nixpkgs"; };
-    	nixvim = { url = "git+https://github.com/nix-community/nixvim?shallow=1"; inputs.nixpkgs.follows = "nixpkgs"; };
+		home-manager = { url = "git+https://github.com/nix-community/home-manager?shallow=1"; inputs.nixpkgs.follows = "nixpkgs"; };
+		nixvim = { url = "git+https://github.com/nix-community/nixvim?shallow=1"; inputs.nixpkgs.follows = "nixpkgs"; };
 	};
 
   	outputs = { nixpkgs, home-manager, ... }@inputs:
